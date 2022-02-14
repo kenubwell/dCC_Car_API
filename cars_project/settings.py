@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'cars',
 ]
 
 MIDDLEWARE = [
@@ -113,7 +115,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 try:
-    from cars_project.local_setting import *
+    from cars_project.local_settings import *
 except ImportError:
     pass
 
