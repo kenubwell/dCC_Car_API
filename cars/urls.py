@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.cars_list),
+    path('<int:pk>/', views.cars_detail), #the int:pk is stating that the pk value has to be an integer
 
 ]

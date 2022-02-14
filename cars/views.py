@@ -20,3 +20,14 @@ def cars_list(request):
         serializers.save()
         return Response(serializers.data, status=status.HTTP_201_CREATED)
 
+
+@api_view(['GET'])
+def cars_detail(request, pk): #this pk allows for input
+    try:
+        car = Car.objects.get(pk=pk)
+        serializer = CarSerializer(car)
+        return Response(serializer.data)  
+
+    except Car.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND) #try except validates user input and provied a return error message
+   
