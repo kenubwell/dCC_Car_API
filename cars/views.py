@@ -23,9 +23,9 @@ def cars_list(request):
         return Response(serializers.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT'])
+@api_view(['GET', 'PUT', 'DELETE'])
 def cars_detail(request, pk): #this pk allows for input
-    
+
     car = get_object_or_404(Car, pk=pk)  #since imported django shortcut we can use this function to check for errors. Just have to enter (Model, Value)
     if request.method == 'GET':
         serializer = CarSerializer(car)
@@ -35,6 +35,11 @@ def cars_detail(request, pk): #this pk allows for input
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+    elif request.method == 'DELETE':
+        car.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 
 
    
